@@ -57,7 +57,7 @@ function checkWinnings(rowIndex, colIndex){
     checkVertical(colIndex);
     checkHorizontal(rowIndex, colIndex);
     checkDiagonalNegative(rowIndex, colIndex);
-    // checkDiagonalPositive(rowIndex, colIndex)
+    checkDiagonalPositive(rowIndex, colIndex)
 };
 
 function checkHorizontal(rowIndex, colIndex){
@@ -117,6 +117,40 @@ function checkDiagonalNegative(rowIndex, colIndex){
                 player_2_count += 1;
                 player_1_count = 0;
             } else if (checkColor(r - m, 7 - m) == 'rgb(0, 0, 255)'){
+                player_1_count += 1;
+                player_2_count = 0;
+            } else {
+                player_1_count = 0;
+                player_2_count = 0;
+            };
+            check_counts();
+        }
+    };
+};   
+
+function checkDiagonalPositive(rowIndex, colIndex){
+
+    for (let i = 0; i <= 4; i++){
+        for (let j = 0; j <= 5; j++){
+                if (checkColor(5 - j, i + j) == 'rgb(255, 0, 0)'){
+                    player_2_count += 1;
+                    player_1_count = 0;
+                } else if (checkColor(5 - j, i + j) == 'rgb(0, 0, 255)'){
+                    player_1_count += 1;
+                    player_2_count = 0;
+                } else {
+                    player_1_count = 0;
+                    player_2_count = 0;
+                }
+                check_counts();
+            }
+    };
+    for (let r = 4; r >= 3; r--){
+        for (let m = 0; m <= 4; m++){
+            if (checkColor(r - m, 0 + m) == 'rgb(255, 0, 0)'){
+                player_2_count += 1;
+                player_1_count = 0;
+            } else if (checkColor(r - m, 0 + m) == 'rgb(0, 0, 255)'){
                 player_1_count += 1;
                 player_2_count = 0;
             } else {
